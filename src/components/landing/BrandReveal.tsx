@@ -6,6 +6,7 @@ import { AnimatedLogo } from "./AnimatedLogo";
 import { PatternBackground } from "./PatternBackground";
 import { Button } from "@/components/ui/Button";
 import { VendorForm } from "@/components/form/VendorForm";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { useTranslations, useLocale } from "next-intl";
 
 export function BrandReveal() {
@@ -56,6 +57,11 @@ export function BrandReveal() {
     <div className="min-h-screen bg-brand-primary relative overflow-hidden">
       <PatternBackground isExiting={isTransitioning && !showForm} />
 
+      {/* Floating Language Switcher */}
+      <div className="fixed bottom-4 left-4 z-50">
+        <LanguageSwitcher className="shadow-lg" />
+      </div>
+
       <AnimatePresence mode="wait">
         {!showForm ? (
           <motion.div
@@ -70,7 +76,7 @@ export function BrandReveal() {
             <AnimatedLogo className="mb-8 w-24 h-24" />
 
             <motion.p
-              className={`text-white/80 text-lg md:text-xl mb-8 max-w-4xl px-4 min-h-37.5 ${
+              className={`text-white/80 text-sm md:text-xl mb-8 max-w-4xl px-4 min-h-37.5 ${
                 isRTL ? "text-right" : "text-left"
               }`}
               initial={{ opacity: 0, y: 20 }}

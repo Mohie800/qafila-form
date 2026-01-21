@@ -97,7 +97,7 @@ export function PatternBackground({
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      <div className="w-full h-28 overflow-hidden relative">
+      <div className="w-full h-16 sm:h-24 md:h-28 lg:h-32 overflow-hidden relative">
         <Image
           src="/Pattern 3.svg"
           alt="Pattern top"
@@ -109,7 +109,7 @@ export function PatternBackground({
           }}
         />
       </div>
-      <div className="w-full h-28 overflow-hidden  absolute bottom-0">
+      {/* <div className="w-full h-16 sm:h-24 md:h-28 lg:h-32 overflow-hidden  absolute bottom-0">
         <Image
           src="/Pattern 3.svg"
           alt="Pattern"
@@ -120,7 +120,7 @@ export function PatternBackground({
               "brightness(0) saturate(100%) invert(75%) sepia(30%) saturate(500%) hue-rotate(350deg) brightness(95%) contrast(90%)",
           }}
         />
-      </div>
+      </div> */}
       {patterns.map((pattern, index) => (
         <motion.div
           key={pattern.id}
