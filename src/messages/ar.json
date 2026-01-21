@@ -1,0 +1,200 @@
+{
+    "common": {
+        "appName": "قافلة",
+        "loading": "جاري التحميل...",
+        "submit": "إرسال",
+        "cancel": "إلغاء",
+        "save": "حفظ",
+        "delete": "حذف",
+        "edit": "تعديل",
+        "view": "عرض",
+        "back": "رجوع",
+        "next": "التالي",
+        "previous": "السابق",
+        "search": "بحث",
+        "filter": "تصفية",
+        "download": "تحميل",
+        "upload": "رفع",
+        "success": "نجاح",
+        "error": "خطأ",
+        "confirm": "تأكيد",
+        "close": "إغلاق",
+        "yes": "نعم",
+        "no": "لا",
+        "required": "مطلوب",
+        "optional": "اختياري"
+    },
+    "landing": {
+        "welcome": "مرحباً بك في قافلة",
+        "subtitle": "قافلة هو سوق أزياء راقٍ يجمع العلامات التجارية المختارة والتصاميم العصرية في منصة واحدة سلسة. يقدم تجربة تسوق بديهية وراقية، من اكتشاف المنتجات إلى الدفع. تفتخر قافلة بدعم ورفع مستوى العلامات التجارية السعودية، مع عرض الإبداع والحرفية المحلية على منصة رقمية راقية. تم تصميم التطبيق لتعزيز تسوق الأزياء من خلال الأناقة والبساطة والتصميم المتمحور حول المستخدم.",
+        "startButton": "ابدأ التسجيل",
+        "description": "سجل علامتك التجارية وكن جزءاً من سوقنا المميز"
+    },
+    "form": {
+        "title": "تسجيل البائع",
+        "subtitle": "يرجى ملء النموذج أدناه لتسجيل علامتك التجارية",
+        "designerName": "اسم المصمم (ة)",
+        "designerNamePlaceholder": "أدخل اسمك الكامل",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "example@email.com",
+        "city": "المدينة",
+        "cityPlaceholder": "أدخل مدينتك",
+        "category": "الفئة أو المجموعة",
+        "categoryPlaceholder": "اختر فئة",
+        "brandName": "اسم العلامة التجارية",
+        "brandNamePlaceholder": "أدخل اسم علامتك التجارية",
+        "phoneNumber": "رقم الهاتف",
+        "phoneNumberPlaceholder": "+966 XX XXX XXXX",
+        "storeLink": "رابط المتجر",
+        "storeLinkPlaceholder": "https://your-store.com",
+        "brandStory": "قصة / نبذة عن العلامة التجارية",
+        "brandStoryPlaceholder": "أخبرنا عن علامتك التجارية وقصتها وما يميزها (50 حرف على الأقل)",
+        "logo": "شعار عالي الدقة",
+        "logoDescription": "ارفع شعار علامتك التجارية (PNG, JPG, SVG, أو WebP - الحد الأقصى 10 ميجابايت)",
+        "bankDetails": "تفاصيل الحساب البنكي",
+        "bankDetailsDescription": "ملف PDF يحتوي على IBAN ورمز Swift واسم صاحب الحساب",
+        "fulfillmentMethod": "طريقة التنفيذ",
+        "fulfillmentMethodPlaceholder": "اختر طريقة التنفيذ",
+        "stockAvailability": "توفر المخزون",
+        "stockAvailabilityPlaceholder": "اختر توفر المخزون",
+        "commercialRegister": "السجل التجاري / وثيقة العمل الحر",
+        "commercialRegisterDescription": "ارفع السجل التجاري أو وثيقة العمل الحر (PDF - الحد الأقصى 20 ميجابايت)",
+        "returnPolicy": "سياسة الاسترجاع / الاسترداد",
+        "returnPolicyDescription": "ارفع وثيقة سياسة الاسترجاع والاسترداد (PDF - الحد الأقصى 20 ميجابايت)",
+        "branchCount": "عدد الفروع / المتاجر",
+        "branchCountPlaceholder": "أدخل عدد الفروع",
+        "submitButton": "إرسال الطلب",
+        "submitting": "جاري الإرسال...",
+        "successTitle": "تم إرسال الطلب",
+        "successMessage": "شكراً لك على طلبك. سنقوم بمراجعة طلبك والرد عليك قريباً.",
+        "errorTitle": "فشل الإرسال",
+        "errorMessage": "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى."
+    },
+    "categories": {
+        "fashion": "أزياء",
+        "jewelry": "مجوهرات",
+        "home-decor": "ديكور منزلي",
+        "art": "فن",
+        "crafts": "حرف يدوية",
+        "food": "أغذية",
+        "beauty": "جمال",
+        "other": "أخرى"
+    },
+    "fulfillment": {
+        "self": "تنفيذ ذاتي",
+        "qafila": "تنفيذ قافلة",
+        "hybrid": "مختلط"
+    },
+    "stock": {
+        "in-stock": "متوفر",
+        "made-to-order": "حسب الطلب",
+        "pre-order": "طلب مسبق",
+        "limited": "مخزون محدود"
+    },
+    "validation": {
+        "required": "هذا الحقل مطلوب",
+        "email": "يرجى إدخال بريد إلكتروني صحيح",
+        "url": "يرجى إدخال رابط صحيح",
+        "phone": "يرجى إدخال رقم هاتف صحيح",
+        "minLength": "يجب أن يكون {min} أحرف على الأقل",
+        "maxLength": "يجب ألا يتجاوز {max} حرف",
+        "minValue": "يجب أن يكون {min} على الأقل",
+        "maxValue": "يجب ألا يتجاوز {max}",
+        "fileRequired": "يرجى رفع ملف",
+        "fileSize": "حجم الملف يجب أن يكون أقل من {size}",
+        "fileType": "نوع الملف غير صالح"
+    },
+    "admin": {
+        "setup": {
+            "title": "إعداد المسؤول",
+            "subtitle": "أنشئ حساب المسؤول الخاص بك",
+            "description": "هذا إعداد لمرة واحدة. يرجى إنشاء كلمة مرور آمنة.",
+            "usernameLabel": "اسم المستخدم",
+            "usernamePlaceholder": "أدخل اسم المستخدم",
+            "passwordLabel": "كلمة المرور",
+            "passwordPlaceholder": "أدخل كلمة المرور",
+            "confirmPasswordLabel": "تأكيد كلمة المرور",
+            "confirmPasswordPlaceholder": "أكد كلمة المرور",
+            "createButton": "إنشاء الحساب",
+            "creating": "جاري إنشاء الحساب...",
+            "passwordRequirements": "يجب أن تكون كلمة المرور 8 أحرف على الأقل مع أحرف كبيرة وصغيرة وأرقام"
+        },
+        "login": {
+            "title": "تسجيل دخول المسؤول",
+            "subtitle": "سجل الدخول للوصول إلى لوحة التحكم",
+            "usernameLabel": "اسم المستخدم",
+            "usernamePlaceholder": "أدخل اسم المستخدم",
+            "passwordLabel": "كلمة المرور",
+            "passwordPlaceholder": "أدخل كلمة المرور",
+            "loginButton": "تسجيل الدخول",
+            "loggingIn": "جاري تسجيل الدخول...",
+            "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة"
+        },
+        "dashboard": {
+            "title": "لوحة التحكم",
+            "welcome": "مرحباً بعودتك",
+            "totalSubmissions": "إجمالي الطلبات",
+            "thisWeek": "هذا الأسبوع",
+            "thisMonth": "هذا الشهر",
+            "recentSubmissions": "الطلبات الأخيرة"
+        },
+        "submissions": {
+            "title": "الطلبات",
+            "noSubmissions": "لا توجد طلبات بعد",
+            "searchPlaceholder": "البحث بالاسم أو العلامة التجارية أو البريد...",
+            "filterByCategory": "تصفية حسب الفئة",
+            "allCategories": "جميع الفئات",
+            "columns": {
+                "designer": "المصمم",
+                "brand": "العلامة التجارية",
+                "category": "الفئة",
+                "city": "المدينة",
+                "date": "التاريخ",
+                "actions": "الإجراءات"
+            },
+            "detail": {
+                "title": "تفاصيل الطلب",
+                "contactInfo": "معلومات الاتصال",
+                "brandInfo": "معلومات العلامة التجارية",
+                "documents": "المستندات",
+                "additionalInfo": "معلومات إضافية",
+                "downloadFile": "تحميل",
+                "viewFile": "عرض",
+                "deleteConfirm": "هل أنت متأكد من حذف هذا الطلب؟",
+                "deleteSuccess": "تم حذف الطلب بنجاح",
+                "deleteError": "فشل حذف الطلب"
+            }
+        },
+        "sidebar": {
+            "dashboard": "لوحة التحكم",
+            "submissions": "الطلبات",
+            "logout": "تسجيل الخروج"
+        }
+    },
+    "theme": {
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "النظام"
+    },
+    "language": {
+        "en": "English",
+        "ar": "العربية"
+    },
+    "fileUpload": {
+        "dragDrop": "اسحب وأفلت ملفاً هنا، أو انقر للاختيار",
+        "browse": "استعراض",
+        "selected": "تم الاختيار",
+        "remove": "إزالة",
+        "maxSize": "الحد الأقصى",
+        "allowedTypes": "الأنواع المسموحة"
+    },
+    "errors": {
+        "somethingWentWrong": "حدث خطأ ما",
+        "notFound": "الصفحة غير موجودة",
+        "unauthorized": "وصول غير مصرح به",
+        "forbidden": "الوصول محظور",
+        "serverError": "خطأ في الخادم",
+        "networkError": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+        "tryAgain": "حاول مرة أخرى"
+    }
+}

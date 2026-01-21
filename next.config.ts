@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n.ts");
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Allow serving uploaded files
+  async rewrites() {
+    return [
+      {
+        source: "/api/files/:path*",
+        destination: "/api/files/:path*",
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

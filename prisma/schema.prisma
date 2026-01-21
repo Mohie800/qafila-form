@@ -1,0 +1,43 @@
+// Qafila Multi-Vendor Data Collection Platform
+// Prisma Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Submission {
+  id                String   @id @default(cuid())
+  designerName      String
+  email             String
+  city              String
+  category          String
+  brandName         String
+  phoneNumber       String
+  storeLink         String?
+  brandStory        String   @db.Text
+  logoPath          String
+  bankDetailsPdf    String
+  fulfillmentMethod String
+  stockAvailability String
+  commercialRegPdf  String
+  returnPolicyPdf   String?
+  branchCount       Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([email])
+  @@index([brandName])
+  @@index([createdAt])
+}
