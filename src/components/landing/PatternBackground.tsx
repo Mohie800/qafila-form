@@ -99,8 +99,8 @@ export function PatternBackground({
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div className="w-full h-28 overflow-hidden relative">
         <Image
-          src="/pattern 3.svg"
-          alt="pattern top"
+          src="/Pattern 3.svg"
+          alt="Pattern top"
           fill
           className="object-cover"
           style={{
@@ -111,8 +111,8 @@ export function PatternBackground({
       </div>
       <div className="w-full h-28 overflow-hidden  absolute bottom-0">
         <Image
-          src="/pattern 3.svg"
-          alt="pattern"
+          src="/Pattern 3.svg"
+          alt="Pattern"
           fill
           className="object-cover"
           style={{
