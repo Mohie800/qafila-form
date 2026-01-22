@@ -8,6 +8,7 @@ import {
   isValidImageType,
   isValidPdfType,
 } from "@/lib/utils";
+import { sendSubmissionNotification } from "@/lib/email";
 
 const UPLOAD_DIR = process.env.UPLOAD_DIR || "./uploads";
 
@@ -149,6 +150,21 @@ export async function POST(request: NextRequest) {
         branchCount,
       },
     });
+
+    // Send email notification to app owners (non-blocking)
+    sendSubmissionNotification({
+      id: submission.id,
+      designerName,
+      email,
+      brandName,
+      city,
+      category,
+      phoneNumber,
+      storeLink,
+      fulfillmentMethod,
+      stockAvailability,
+      branchCount,
+    }).catch((err) => console.error("Email notification failed:", err));
 
     return NextResponse.json({
       success: true,
