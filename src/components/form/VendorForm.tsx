@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Play, Download } from "lucide-react";
 import { vendorFormSchema, VendorFormData } from "@/lib/validations";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -22,8 +22,13 @@ export function VendorForm({ onBack }: VendorFormProps) {
   const t = useTranslations("form");
   const tCategories = useTranslations("categories");
   const tFulfillment = useTranslations("fulfillment");
-  const tStock = useTranslations("stock");
+  const tPolicies = useTranslations("policies");
   const tCommon = useTranslations("common");
+
+  const [videosWatched, setVideosWatched] = useState({
+    video1: false,
+    video2: false,
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -34,7 +39,9 @@ export function VendorForm({ onBack }: VendorFormProps) {
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [bankDetailsFile, setBankDetailsFile] = useState<File | null>(null);
   const [commercialRegFile, setCommercialRegFile] = useState<File | null>(null);
-  const [returnPolicyFile, setReturnPolicyFile] = useState<File | null>(null);
+  const [taxCertificateFile, setTaxCertificateFile] = useState<File | null>(
+    null,
+  );
 
   const {
     register,
@@ -54,8 +61,12 @@ export function VendorForm({ onBack }: VendorFormProps) {
       storeLink: "",
       brandStory: "",
       fulfillmentMethod: "",
-      stockAvailability: "",
-      branchCount: 0,
+      productImagePolicy: false,
+      returnRefundPolicy: false,
+      privacyPolicy: false,
+      termsOfUse: false,
+      commissionShippingPolicy: false,
+      whistleblowingPolicy: false,
     },
   });
 
@@ -76,15 +87,20 @@ export function VendorForm({ onBack }: VendorFormProps) {
     { value: "hybrid", label: tFulfillment("hybrid") },
   ];
 
-  const stockOptions = [
-    { value: "in-stock", label: tStock("in-stock") },
-    { value: "made-to-order", label: tStock("made-to-order") },
-    { value: "pre-order", label: tStock("pre-order") },
-    { value: "limited", label: tStock("limited") },
-  ];
-
   const onSubmit = async (data: VendorFormData) => {
     if (!logoFile || !bankDetailsFile || !commercialRegFile) {
+      return;
+    }
+
+    // Check if all policy checkboxes are checked
+    if (
+      !data.productImagePolicy ||
+      !data.returnRefundPolicy ||
+      !data.privacyPolicy ||
+      !data.termsOfUse ||
+      !data.commissionShippingPolicy ||
+      !data.whistleblowingPolicy
+    ) {
       return;
     }
 
@@ -103,8 +119,8 @@ export function VendorForm({ onBack }: VendorFormProps) {
       formData.append("logo", logoFile);
       formData.append("bankDetails", bankDetailsFile);
       formData.append("commercialRegister", commercialRegFile);
-      if (returnPolicyFile) {
-        formData.append("returnPolicy", returnPolicyFile);
+      if (taxCertificateFile) {
+        formData.append("taxCertificate", taxCertificateFile);
       }
 
       const response = await fetch("/api/submissions", {
@@ -174,6 +190,76 @@ export function VendorForm({ onBack }: VendorFormProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Video Introduction */}
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-lg font-semibold text-foreground mb-4">
+                {t("introVideos")}
+              </h2>
+              <p className="text-text-gray text-sm mb-6">
+                {t("introVideosDescription")}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Video 1 */}
+                <div className="flex flex-col items-center p-4 border border-border rounded-lg bg-background-secondary">
+                  <h3 className="font-medium text-foreground mb-3">
+                    {t("video1Title")}
+                  </h3>
+                  <div className="flex gap-3">
+                    <a
+                      href="/video1.mp4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        setVideosWatched((prev) => ({ ...prev, video1: true }))
+                      }
+                      className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      <Play className="w-4 h-4" />
+                      <span>{tCommon("view")}</span>
+                    </a>
+                    <a
+                      href="/video1.mp4"
+                      download
+                      className="flex items-center gap-2 px-4 py-2 border border-border text-foreground rounded-lg hover:bg-background-secondary transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>{tCommon("download")}</span>
+                    </a>
+                  </div>
+                </div>
+                {/* Video 2 */}
+                <div className="flex flex-col items-center p-4 border border-border rounded-lg bg-background-secondary">
+                  <h3 className="font-medium text-foreground mb-3">
+                    {t("video2Title")}
+                  </h3>
+                  <div className="flex gap-3">
+                    <a
+                      href="/video2.mp4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        setVideosWatched((prev) => ({ ...prev, video2: true }))
+                      }
+                      className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      <Play className="w-4 h-4" />
+                      <span>{tCommon("view")}</span>
+                    </a>
+                    <a
+                      href="/video2.mp4"
+                      download
+                      className="flex items-center gap-2 px-4 py-2 border border-border text-foreground rounded-lg hover:bg-background-secondary transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>{tCommon("download")}</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Contact Information */}
           <Card>
             <CardContent className="space-y-5 p-6">
@@ -258,33 +344,13 @@ export function VendorForm({ onBack }: VendorFormProps) {
           {/* Business Details */}
           <Card>
             <CardContent className="space-y-5 p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <Select
-                  label={t("fulfillmentMethod")}
-                  placeholder={t("fulfillmentMethodPlaceholder")}
-                  options={fulfillmentOptions}
-                  error={errors.fulfillmentMethod?.message}
-                  required
-                  {...register("fulfillmentMethod")}
-                />
-                <Select
-                  label={t("stockAvailability")}
-                  placeholder={t("stockAvailabilityPlaceholder")}
-                  options={stockOptions}
-                  error={errors.stockAvailability?.message}
-                  required
-                  {...register("stockAvailability")}
-                />
-              </div>
-
-              <Input
-                label={t("branchCount")}
-                type="number"
-                placeholder={t("branchCountPlaceholder")}
-                error={errors.branchCount?.message}
+              <Select
+                label={t("fulfillmentMethod")}
+                placeholder={t("fulfillmentMethodPlaceholder")}
+                options={fulfillmentOptions}
+                error={errors.fulfillmentMethod?.message}
                 required
-                min={0}
-                {...register("branchCount", { valueAsNumber: true })}
+                {...register("fulfillmentMethod")}
               />
             </CardContent>
           </Card>
@@ -336,13 +402,91 @@ export function VendorForm({ onBack }: VendorFormProps) {
               />
 
               <FileUpload
-                label={t("returnPolicy")}
-                hint={t("returnPolicyDescription")}
+                label={t("taxCertificate")}
+                hint={t("taxCertificateDescription")}
                 fileType="pdf"
                 maxSize={20 * 1024 * 1024}
-                value={returnPolicyFile}
-                onChange={setReturnPolicyFile}
+                value={taxCertificateFile}
+                onChange={setTaxCertificateFile}
               />
+            </CardContent>
+          </Card>
+
+          {/* Policy Agreements */}
+          <Card>
+            <CardContent className="space-y-4 p-6">
+              <h2 className="text-lg font-semibold text-foreground mb-2">
+                {t("policyAgreements")}
+              </h2>
+              <p className="text-text-gray text-sm mb-4">
+                {t("policyAgreementsDescription")}
+              </p>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("productImagePolicy")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("productImagePolicy")}
+                </span>
+              </label>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("returnRefundPolicy")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("returnRefundPolicy")}
+                </span>
+              </label>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("privacyPolicy")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("privacyPolicy")}
+                </span>
+              </label>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("termsOfUse")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("termsOfUse")}
+                </span>
+              </label>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("commissionShippingPolicy")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("commissionShippingPolicy")}
+                </span>
+              </label>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
+                  {...register("whistleblowingPolicy")}
+                />
+                <span className="text-foreground text-sm">
+                  {tPolicies("whistleblowingPolicy")}
+                </span>
+              </label>
             </CardContent>
           </Card>
 

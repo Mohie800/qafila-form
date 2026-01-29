@@ -13,6 +13,7 @@ export function Providers({ children }: ProvidersProps) {
       attribute="class"
       defaultTheme="dark"
       enableSystem={false}
+      storageKey="qafila-theme"
       disableTransitionOnChange={false}
     >
       {children}

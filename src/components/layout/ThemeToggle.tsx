@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Sun, Moon, Monitor } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ThemeToggleProps {
@@ -31,7 +31,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
   const themes = [
     { value: "light", icon: Sun },
     { value: "dark", icon: Moon },
-    { value: "system", icon: Monitor },
+    // { value: "system", icon: Monitor },
   ];
 
   const currentIndex = themes.findIndex((t) => t.value === theme);

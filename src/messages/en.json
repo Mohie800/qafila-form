@@ -59,10 +59,14 @@
         "stockAvailabilityPlaceholder": "Select stock availability",
         "commercialRegister": "Commercial Register / Freelance Document",
         "commercialRegisterDescription": "Upload your commercial register or freelance document (PDF - Max 20MB)",
-        "returnPolicy": "Return/Refund Policy",
-        "returnPolicyDescription": "Upload your return and refund policy document (PDF - Max 20MB)",
-        "branchCount": "Number of Branches/Stores",
-        "branchCountPlaceholder": "Enter number of branches",
+        "taxCertificate": "Tax Certificate (If Available)",
+        "taxCertificateDescription": "Upload your tax certificate document if available (PDF - Max 20MB)",
+        "introVideos": "Introduction Videos",
+        "introVideosDescription": "Please watch or download these introduction videos before filling out the form",
+        "video1Title": "Introduction Video 1",
+        "video2Title": "Introduction Video 2",
+        "policyAgreements": "Policy Agreements",
+        "policyAgreementsDescription": "Please read and agree to the following policies to proceed with your application",
         "submitButton": "Submit Application",
         "submitting": "Submitting...",
         "successTitle": "Application Submitted",
@@ -90,6 +94,14 @@
         "made-to-order": "Made to order",
         "pre-order": "Pre-order",
         "limited": "Limited stock"
+    },
+    "policies": {
+        "productImagePolicy": "I agree to the Product Image Policy",
+        "returnRefundPolicy": "I agree to the Return, Refund, and Cancellation Policy",
+        "privacyPolicy": "I agree to the Privacy and Confidentiality Policy",
+        "termsOfUse": "I agree to the Terms of Use Policy",
+        "commissionShippingPolicy": "I agree to the Commission and Shipping Policy",
+        "whistleblowingPolicy": "I agree to the Whistleblowing Policy"
     },
     "validation": {
         "required": "This field is required",

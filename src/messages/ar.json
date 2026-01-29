@@ -59,10 +59,14 @@
         "stockAvailabilityPlaceholder": "اختر توفر المخزون",
         "commercialRegister": "السجل التجاري / وثيقة العمل الحر",
         "commercialRegisterDescription": "ارفع السجل التجاري أو وثيقة العمل الحر (PDF - الحد الأقصى 20 ميجابايت)",
-        "returnPolicy": "سياسة الاسترجاع / الاسترداد",
-        "returnPolicyDescription": "ارفع وثيقة سياسة الاسترجاع والاسترداد (PDF - الحد الأقصى 20 ميجابايت)",
-        "branchCount": "عدد الفروع / المتاجر",
-        "branchCountPlaceholder": "أدخل عدد الفروع",
+        "taxCertificate": "شهادة الضريبة (إن وجد)",
+        "taxCertificateDescription": "ارفع شهادة الضريبة إن وجدت (PDF - الحد الأقصى 20 ميجابايت)",
+        "introVideos": "فيديوهات تعريفية",
+        "introVideosDescription": "يرجى مشاهدة أو تحميل هذه الفيديوهات التعريفية قبل ملء النموذج",
+        "video1Title": "الفيديو التعريفي الأول",
+        "video2Title": "الفيديو التعريفي الثاني",
+        "policyAgreements": "الموافقة على السياسات",
+        "policyAgreementsDescription": "يرجى قراءة والموافقة على السياسات التالية للمتابعة في طلبك",
         "submitButton": "إرسال الطلب",
         "submitting": "جاري الإرسال...",
         "successTitle": "تم إرسال الطلب",
@@ -90,6 +94,14 @@
         "made-to-order": "حسب الطلب",
         "pre-order": "طلب مسبق",
         "limited": "مخزون محدود"
+    },
+    "policies": {
+        "productImagePolicy": "أوافق على سياسة صور المنتجات",
+        "returnRefundPolicy": "أوافق على سياسة الاسترجاع والاسترداد والإلغاء",
+        "privacyPolicy": "أوافق على سياسة الخصوصية والسرية",
+        "termsOfUse": "أوافق على سياسة شروط الاستخدام",
+        "commissionShippingPolicy": "أوافق على سياسة العمولة والشحن",
+        "whistleblowingPolicy": "أوافق على سياسة الإبلاغ عن المخالفات"
     },
     "validation": {
         "required": "هذا الحقل مطلوب",

@@ -18,24 +18,28 @@ model Admin {
 }
 
 model Submission {
-  id                String   @id @default(cuid())
-  designerName      String
-  email             String
-  city              String
-  category          String
-  brandName         String
-  phoneNumber       String
-  storeLink         String?
-  brandStory        String   @db.Text
-  logoPath          String
-  bankDetailsPdf    String
-  fulfillmentMethod String
-  stockAvailability String
-  commercialRegPdf  String
-  returnPolicyPdf   String?
-  branchCount       Int
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id                       String   @id @default(cuid())
+  designerName             String
+  email                    String
+  city                     String
+  category                 String
+  brandName                String
+  phoneNumber              String
+  storeLink                String?
+  brandStory               String   @db.Text
+  logoPath                 String
+  bankDetailsPdf           String
+  fulfillmentMethod        String
+  commercialRegPdf         String
+  taxCertificatePdf        String?
+  productImagePolicy       Boolean  @default(false)
+  returnRefundPolicy       Boolean  @default(false)
+  privacyPolicy            Boolean  @default(false)
+  termsOfUse               Boolean  @default(false)
+  commissionShippingPolicy Boolean  @default(false)
+  whistleblowingPolicy     Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
 
   @@index([email])
   @@index([brandName])

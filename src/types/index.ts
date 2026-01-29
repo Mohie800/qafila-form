@@ -11,10 +11,14 @@ export interface Submission {
   logoPath: string;
   bankDetailsPdf: string;
   fulfillmentMethod: string;
-  stockAvailability: string;
   commercialRegPdf: string;
-  returnPolicyPdf: string | null;
-  branchCount: number;
+  taxCertificatePdf: string | null;
+  productImagePolicy: boolean;
+  returnRefundPolicy: boolean;
+  privacyPolicy: boolean;
+  termsOfUse: boolean;
+  commissionShippingPolicy: boolean;
+  whistleblowingPolicy: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

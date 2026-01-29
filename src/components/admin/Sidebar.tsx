@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import { LayoutDashboard, FileText, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +13,12 @@ export function Sidebar() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -34,15 +42,17 @@ export function Sidebar() {
     },
   ];
 
+  // Determine logo based on theme
+  const logoSrc =
+    mounted && resolvedTheme === "dark"
+      ? "/horizontal-dark-logo.svg"
+      : "/horizontal-light-logo.svg";
+
   return (
     <aside className="w-64 bg-card border-r border-border min-h-screen flex flex-col">
       <div className="p-4 border-b border-border">
         <Link href={`/${locale}/admin`}>
-          <img
-            src="/Qafila-01.svg"
-            alt="Qafila"
-            className="h-8 w-auto dark:invert"
-          />
+          <img src={logoSrc} alt="Qafila" className="h-8 w-auto" />
         </Link>
       </div>
 

@@ -22,8 +22,6 @@ interface SubmissionData {
   phoneNumber: string;
   storeLink?: string | null;
   fulfillmentMethod: string;
-  stockAvailability: string;
-  branchCount: number;
 }
 
 export async function sendSubmissionNotification(
@@ -91,14 +89,6 @@ export async function sendSubmissionNotification(
             <span class="label">Fulfillment Method:</span>
             <span class="value">${submission.fulfillmentMethod}</span>
           </div>
-          <div class="field">
-            <span class="label">Stock Availability:</span>
-            <span class="value">${submission.stockAvailability}</span>
-          </div>
-          <div class="field">
-            <span class="label">Branch Count:</span>
-            <span class="value">${submission.branchCount}</span>
-          </div>
           ${
             submission.storeLink
               ? `
@@ -130,8 +120,6 @@ Phone: ${submission.phoneNumber}
 City: ${submission.city}
 Category: ${submission.category}
 Fulfillment Method: ${submission.fulfillmentMethod}
-Stock Availability: ${submission.stockAvailability}
-Branch Count: ${submission.branchCount}
 ${submission.storeLink ? `Store Link: ${submission.storeLink}` : ""}
 
 Submission ID: ${submission.id}

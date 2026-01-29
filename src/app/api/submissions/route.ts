@@ -17,7 +17,7 @@ async function ensureUploadDirs() {
     "logos",
     "bank-details",
     "commercial-registers",
-    "return-policies",
+    "tax-certificates",
   ];
   for (const dir of dirs) {
     const fullPath = path.join(UPLOAD_DIR, dir);
@@ -55,9 +55,16 @@ export async function POST(request: NextRequest) {
     const storeLink = (formData.get("storeLink") as string) || null;
     const brandStory = formData.get("brandStory") as string;
     const fulfillmentMethod = formData.get("fulfillmentMethod") as string;
-    const stockAvailability = formData.get("stockAvailability") as string;
-    const branchCount =
-      parseInt(formData.get("branchCount") as string, 10) || 0;
+
+    // Get policy checkboxes
+    const productImagePolicy = formData.get("productImagePolicy") === "true";
+    const returnRefundPolicy = formData.get("returnRefundPolicy") === "true";
+    const privacyPolicy = formData.get("privacyPolicy") === "true";
+    const termsOfUse = formData.get("termsOfUse") === "true";
+    const commissionShippingPolicy =
+      formData.get("commissionShippingPolicy") === "true";
+    const whistleblowingPolicy =
+      formData.get("whistleblowingPolicy") === "true";
 
     // Validate required fields
     if (
@@ -68,11 +75,25 @@ export async function POST(request: NextRequest) {
       !brandName ||
       !phoneNumber ||
       !brandStory ||
-      !fulfillmentMethod ||
-      !stockAvailability
+      !fulfillmentMethod
     ) {
       return NextResponse.json(
         { success: false, error: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+
+    // Validate policy agreements
+    if (
+      !productImagePolicy ||
+      !returnRefundPolicy ||
+      !privacyPolicy ||
+      !termsOfUse ||
+      !commissionShippingPolicy ||
+      !whistleblowingPolicy
+    ) {
+      return NextResponse.json(
+        { success: false, error: "All policy agreements are required" },
         { status: 400 },
       );
     }
@@ -81,7 +102,7 @@ export async function POST(request: NextRequest) {
     const logoFile = formData.get("logo") as File;
     const bankDetailsFile = formData.get("bankDetails") as File;
     const commercialRegFile = formData.get("commercialRegister") as File;
-    const returnPolicyFile = formData.get("returnPolicy") as File | null;
+    const taxCertificateFile = formData.get("taxCertificate") as File | null;
 
     // Validate required files
     if (!logoFile || !bankDetailsFile || !commercialRegFile) {
@@ -112,9 +133,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (returnPolicyFile && !isValidPdfType(returnPolicyFile.name)) {
+    if (taxCertificateFile && !isValidPdfType(taxCertificateFile.name)) {
       return NextResponse.json(
-        { success: false, error: "Return policy must be a PDF file" },
+        { success: false, error: "Tax certificate must be a PDF file" },
         { status: 400 },
       );
     }
@@ -126,8 +147,8 @@ export async function POST(request: NextRequest) {
       commercialRegFile,
       "commercial-registers",
     );
-    const returnPolicyPdf = returnPolicyFile
-      ? await saveFile(returnPolicyFile, "return-policies")
+    const taxCertificatePdf = taxCertificateFile
+      ? await saveFile(taxCertificateFile, "tax-certificates")
       : null;
 
     // Create submission
@@ -144,10 +165,14 @@ export async function POST(request: NextRequest) {
         logoPath,
         bankDetailsPdf,
         fulfillmentMethod,
-        stockAvailability,
         commercialRegPdf,
-        returnPolicyPdf,
-        branchCount,
+        taxCertificatePdf,
+        productImagePolicy,
+        returnRefundPolicy,
+        privacyPolicy,
+        termsOfUse,
+        commissionShippingPolicy,
+        whistleblowingPolicy,
       },
     });
 
@@ -162,8 +187,6 @@ export async function POST(request: NextRequest) {
       phoneNumber,
       storeLink,
       fulfillmentMethod,
-      stockAvailability,
-      branchCount,
     }).catch((err) => console.error("Email notification failed:", err));
 
     return NextResponse.json({

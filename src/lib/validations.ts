@@ -44,9 +44,29 @@ export const vendorFormSchema = z.object({
 
   fulfillmentMethod: z.string().min(1, messages.required),
 
-  stockAvailability: z.string().min(1, messages.required),
+  productImagePolicy: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the product image policy",
+  }),
 
-  branchCount: z.number().min(0, messages.min(0)).max(1000, messages.max(1000)),
+  returnRefundPolicy: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the return, refund, and cancellation policy",
+  }),
+
+  privacyPolicy: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the privacy and confidentiality policy",
+  }),
+
+  termsOfUse: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the terms of use policy",
+  }),
+
+  commissionShippingPolicy: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the commission and shipping policy",
+  }),
+
+  whistleblowingPolicy: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the whistleblowing policy",
+  }),
 });
 
 export type VendorFormData = z.infer<typeof vendorFormSchema>;

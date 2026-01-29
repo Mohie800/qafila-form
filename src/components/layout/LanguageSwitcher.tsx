@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { Languages } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface LanguageSwitcherProps {
@@ -20,6 +20,13 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     router.push(`/${newLocale}${pathWithoutLocale}`);
   };
 
+  // Show the flag of the language we're switching TO
+  const flagSrc =
+    locale === "en"
+      ? "/Flag_of_Saudi_Arabia.svg"
+      : "/Flag_of_the_United_Kingdom.svg";
+  const flagAlt = locale === "en" ? "Arabic" : "English";
+
   return (
     <button
       onClick={switchLocale}
@@ -30,10 +37,16 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       )}
       aria-label="Switch language"
     >
-      <Languages className="w-5 h-5" />
       <span className="text-sm font-medium">
         {locale === "en" ? "العربية" : "EN"}
       </span>
+      <Image
+        src={flagSrc}
+        alt={flagAlt}
+        width={24}
+        height={16}
+        className="rounded-sm object-cover"
+      />
     </button>
   );
 }

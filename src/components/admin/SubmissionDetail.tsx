@@ -17,7 +17,7 @@ export function SubmissionDetail({ submission }: SubmissionDetailProps) {
   const tForm = useTranslations("form");
   const tCategories = useTranslations("categories");
   const tFulfillment = useTranslations("fulfillment");
-  const tStock = useTranslations("stock");
+  const tPolicies = useTranslations("policies");
   const tCommon = useTranslations("common");
   const locale = useLocale();
 
@@ -34,14 +34,6 @@ export function SubmissionDetail({ submission }: SubmissionDetailProps) {
       return tFulfillment(method as any);
     } catch {
       return method;
-    }
-  };
-
-  const getStockLabel = (stock: string) => {
-    try {
-      return tStock(stock as any);
-    } catch {
-      return stock;
     }
   };
 
@@ -173,14 +165,95 @@ export function SubmissionDetail({ submission }: SubmissionDetailProps) {
               label={tForm("fulfillmentMethod")}
               value={getFulfillmentLabel(submission.fulfillmentMethod)}
             />
-            <InfoRow
-              label={tForm("stockAvailability")}
-              value={getStockLabel(submission.stockAvailability)}
-            />
-            <InfoRow
-              label={tForm("branchCount")}
-              value={submission.branchCount}
-            />
+          </CardContent>
+        </Card>
+
+        {/* Policy Agreements */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{tForm("policyAgreements")}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.productImagePolicy
+                    ? "text-green-600"
+                    : "text-red-600"
+                }
+              >
+                {submission.productImagePolicy ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("productImagePolicy")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.returnRefundPolicy
+                    ? "text-green-600"
+                    : "text-red-600"
+                }
+              >
+                {submission.returnRefundPolicy ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("returnRefundPolicy")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.privacyPolicy ? "text-green-600" : "text-red-600"
+                }
+              >
+                {submission.privacyPolicy ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("privacyPolicy")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.termsOfUse ? "text-green-600" : "text-red-600"
+                }
+              >
+                {submission.termsOfUse ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("termsOfUse")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.commissionShippingPolicy
+                    ? "text-green-600"
+                    : "text-red-600"
+                }
+              >
+                {submission.commissionShippingPolicy ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("commissionShippingPolicy")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span
+                className={
+                  submission.whistleblowingPolicy
+                    ? "text-green-600"
+                    : "text-red-600"
+                }
+              >
+                {submission.whistleblowingPolicy ? "✓" : "✗"}
+              </span>
+              <span className="text-foreground text-sm">
+                {tPolicies("whistleblowingPolicy")}
+              </span>
+            </div>
           </CardContent>
         </Card>
 
@@ -200,8 +273,8 @@ export function SubmissionDetail({ submission }: SubmissionDetailProps) {
               path={submission.commercialRegPdf}
             />
             <FileRow
-              label={tForm("returnPolicy")}
-              path={submission.returnPolicyPdf}
+              label={tForm("taxCertificate")}
+              path={submission.taxCertificatePdf}
             />
           </CardContent>
         </Card>
