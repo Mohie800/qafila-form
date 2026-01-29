@@ -78,7 +78,7 @@ export async function DELETE(
       submission.logoPath,
       submission.bankDetailsPdf,
       submission.commercialRegPdf,
-      submission.returnPolicyPdf,
+      submission.taxCertificatePdf,
     ].filter(Boolean);
 
     for (const filePath of filePaths) {
