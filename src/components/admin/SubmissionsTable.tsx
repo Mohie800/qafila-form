@@ -72,13 +72,13 @@ export function SubmissionsTable({
     }
   };
 
-  if (submissions.length === 0) {
-    return (
-      <Card className="p-12 text-center">
-        <p className="text-text-gray">{t("noSubmissions")}</p>
-      </Card>
-    );
-  }
+  // if (submissions.length === 0) {
+  //   return (
+  //     <Card className="p-12 text-center">
+  //       <p className="text-text-gray">{t("noSubmissions")}</p>
+  //     </Card>
+  //   );
+  // }
 
   return (
     <div className="space-y-4">
@@ -105,124 +105,132 @@ export function SubmissionsTable({
         </div>
       </div>
 
-      {/* Table */}
-      <Card className="overflow-hidden" padding="none">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-background-secondary">
-              <tr>
-                <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.designer")}
-                </th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.brand")}
-                </th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.category")}
-                </th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.city")}
-                </th>
-                <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.date")}
-                </th>
-                <th className="text-right px-4 py-3 text-sm font-medium text-text-gray">
-                  {t("columns.actions")}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {submissions.map((submission) => (
-                <tr
-                  key={submission.id}
-                  className="hover:bg-background-secondary/50"
-                >
-                  <td className="px-4 py-4">
-                    <div>
-                      <p className="font-medium text-foreground">
-                        {submission.designerName}
-                      </p>
-                      <p className="text-sm text-text-gray">
-                        {submission.email}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 text-foreground">
-                    {submission.brandName}
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
-                      {getCategoryLabel(submission.category)}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 text-text-gray">
-                    {submission.city}
-                  </td>
-                  <td className="px-4 py-4 text-text-gray">
-                    {formatDate(submission.createdAt, locale)}
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        onClick={() =>
-                          router.push(
-                            `/${locale}/admin/submissions/${submission.id}`,
-                          )
-                        }
-                        className="p-2 rounded-lg hover:bg-background-secondary transition-colors"
-                        title="View"
-                      >
-                        <Eye className="w-5 h-5 text-text-gray hover:text-foreground" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(submission.id)}
-                        className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                        title={
-                          deleteId === submission.id
-                            ? "Click again to confirm"
-                            : "Delete"
-                        }
-                      >
-                        <Trash2
-                          className={`w-5 h-5 ${
-                            deleteId === submission.id
-                              ? "text-red-500"
-                              : "text-text-gray hover:text-red-500"
-                          }`}
-                        />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
+      {submissions.length === 0 ? (
+        <Card className="p-12 text-center">
+          <p className="text-text-gray">{t("noSubmissions")}</p>
+        </Card>
+      ) : (
+        <>
+          {/* Table */}
+          <Card className="overflow-hidden" padding="none">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-background-secondary">
+                  <tr>
+                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.designer")}
+                    </th>
+                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.brand")}
+                    </th>
+                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.category")}
+                    </th>
+                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.city")}
+                    </th>
+                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.date")}
+                    </th>
+                    <th className="text-right px-4 py-3 text-sm font-medium text-text-gray">
+                      {t("columns.actions")}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {submissions.map((submission) => (
+                    <tr
+                      key={submission.id}
+                      className="hover:bg-background-secondary/50"
+                    >
+                      <td className="px-4 py-4">
+                        <div>
+                          <p className="font-medium text-foreground">
+                            {submission.designerName}
+                          </p>
+                          <p className="text-sm text-text-gray">
+                            {submission.email}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-foreground">
+                        {submission.brandName}
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
+                          {getCategoryLabel(submission.category)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-text-gray">
+                        {submission.city}
+                      </td>
+                      <td className="px-4 py-4 text-text-gray">
+                        {formatDate(submission.createdAt, locale)}
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={() =>
+                              router.push(
+                                `/${locale}/admin/submissions/${submission.id}`,
+                              )
+                            }
+                            className="p-2 rounded-lg hover:bg-background-secondary transition-colors"
+                            title="View"
+                          >
+                            <Eye className="w-5 h-5 text-text-gray hover:text-foreground" />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(submission.id)}
+                            className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            title={
+                              deleteId === submission.id
+                                ? "Click again to confirm"
+                                : "Delete"
+                            }
+                          >
+                            <Trash2
+                              className={`w-5 h-5 ${
+                                deleteId === submission.id
+                                  ? "text-red-500"
+                                  : "text-text-gray hover:text-red-500"
+                              }`}
+                            />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-          <span className="text-sm text-text-gray">
-            {currentPage} / {totalPages}
-          </span>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-        </div>
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <span className="text-sm text-text-gray">
+                {currentPage} / {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
