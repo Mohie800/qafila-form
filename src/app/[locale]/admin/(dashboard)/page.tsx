@@ -74,17 +74,17 @@ export default async function AdminDashboardPage() {
                 }) => (
                   <div
                     key={submission.id}
-                    className="py-3 flex items-center justify-between"
+                    className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                   >
-                    <div>
-                      <p className="font-medium text-foreground">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-foreground truncate">
                         {submission.brandName}
                       </p>
-                      <p className="text-sm text-text-gray">
+                      <p className="text-sm text-text-gray truncate">
                         {submission.designerName}
                       </p>
                     </div>
-                    <div className="text-right">
+                    <div className="shrink-0">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
                         {submission.category}
                       </span>

@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Eye, Trash2, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Eye,
+  Trash2,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  AlertTriangle,
+  X,
+} from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import { Submission } from "@/types";
 import { Button } from "@/components/ui/Button";
@@ -31,11 +39,19 @@ export function SubmissionsTable({
   onDelete,
 }: SubmissionsTableProps) {
   const t = useTranslations("admin.submissions");
+  const tCommon = useTranslations("common");
   const tCategories = useTranslations("categories");
   const locale = useLocale();
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
-  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleteModal, setDeleteModal] = useState<{
+    open: boolean;
+    submission: Submission | null;
+  }>({
+    open: false,
+    submission: null,
+  });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const categoryOptions = [
     { value: "", label: t("allCategories") },
@@ -54,13 +70,22 @@ export function SubmissionsTable({
     onSearch(searchValue);
   };
 
-  const handleDelete = async (id: string) => {
-    if (deleteId === id) {
-      await onDelete(id);
-      setDeleteId(null);
-    } else {
-      setDeleteId(id);
-      setTimeout(() => setDeleteId(null), 3000);
+  const openDeleteModal = (submission: Submission) => {
+    setDeleteModal({ open: true, submission });
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModal({ open: false, submission: null });
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!deleteModal.submission) return;
+    setIsDeleting(true);
+    try {
+      await onDelete(deleteModal.submission.id);
+      closeDeleteModal();
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -111,28 +136,98 @@ export function SubmissionsTable({
         </Card>
       ) : (
         <>
-          {/* Table */}
-          <Card className="overflow-hidden" padding="none">
+          {/* Mobile Card View */}
+          <div className="md:hidden space-y-4">
+            {submissions.map((submission) => (
+              <Card key={submission.id} className="p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-foreground truncate">
+                      {submission.designerName}
+                    </p>
+                    <p className="text-sm text-text-gray truncate">
+                      {submission.email}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      onClick={() =>
+                        router.push(
+                          `/${locale}/admin/submissions/${submission.id}`,
+                        )
+                      }
+                      className="p-2 rounded-lg hover:bg-background-secondary transition-colors"
+                      title="View"
+                    >
+                      <Eye className="w-5 h-5 text-text-gray hover:text-foreground" />
+                    </button>
+                    <button
+                      onClick={() => openDeleteModal(submission)}
+                      className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                      title={tCommon("delete")}
+                    >
+                      <Trash2 className="w-5 h-5 text-text-gray hover:text-red-500" />
+                    </button>
+                  </div>
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <p className="text-text-gray text-xs">
+                      {t("columns.brand")}
+                    </p>
+                    <p className="text-foreground truncate">
+                      {submission.brandName}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-text-gray text-xs">
+                      {t("columns.category")}
+                    </p>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">
+                      {getCategoryLabel(submission.category)}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-text-gray text-xs">
+                      {t("columns.city")}
+                    </p>
+                    <p className="text-foreground">{submission.city}</p>
+                  </div>
+                  <div>
+                    <p className="text-text-gray text-xs">
+                      {t("columns.date")}
+                    </p>
+                    <p className="text-foreground">
+                      {formatDate(submission.createdAt, locale)}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <Card className="overflow-hidden hidden md:block" padding="none">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-background-secondary">
                   <tr>
-                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-start px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.designer")}
                     </th>
-                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-start px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.brand")}
                     </th>
-                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-start px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.category")}
                     </th>
-                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-start px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.city")}
                     </th>
-                    <th className="text-left px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-start px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.date")}
                     </th>
-                    <th className="text-right px-4 py-3 text-sm font-medium text-text-gray">
+                    <th className="text-end px-4 py-3 text-sm font-medium text-text-gray">
                       {t("columns.actions")}
                     </th>
                   </tr>
@@ -181,21 +276,11 @@ export function SubmissionsTable({
                             <Eye className="w-5 h-5 text-text-gray hover:text-foreground" />
                           </button>
                           <button
-                            onClick={() => handleDelete(submission.id)}
+                            onClick={() => openDeleteModal(submission)}
                             className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                            title={
-                              deleteId === submission.id
-                                ? "Click again to confirm"
-                                : "Delete"
-                            }
+                            title={tCommon("delete")}
                           >
-                            <Trash2
-                              className={`w-5 h-5 ${
-                                deleteId === submission.id
-                                  ? "text-red-500"
-                                  : "text-text-gray hover:text-red-500"
-                              }`}
-                            />
+                            <Trash2 className="w-5 h-5 text-text-gray hover:text-red-500" />
                           </button>
                         </div>
                       </td>
@@ -231,6 +316,68 @@ export function SubmissionsTable({
             </div>
           )}
         </>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deleteModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={closeDeleteModal}
+          />
+          {/* Modal */}
+          <div className="relative bg-background rounded-xl shadow-xl max-w-md w-full mx-4 p-6 animate-in fade-in zoom-in-95 duration-200">
+            {/* Close button */}
+            <button
+              onClick={closeDeleteModal}
+              className="absolute top-4 right-4 p-1 rounded-lg hover:bg-background-secondary transition-colors"
+            >
+              <X className="w-5 h-5 text-text-gray" />
+            </button>
+
+            {/* Icon */}
+            <div className="flex justify-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                <AlertTriangle className="w-6 h-6 text-red-500" />
+              </div>
+            </div>
+
+            {/* Content */}
+            <h3 className="text-lg font-semibold text-foreground text-center mb-2">
+              {t("deleteModal.title")}
+            </h3>
+            <p className="text-text-gray text-center mb-2">
+              {t("deleteModal.message")}
+            </p>
+            {deleteModal.submission && (
+              <p className="text-foreground font-medium text-center mb-6">
+                {deleteModal.submission.brandName} -{" "}
+                {deleteModal.submission.designerName}
+              </p>
+            )}
+
+            {/* Actions */}
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={closeDeleteModal}
+                disabled={isDeleting}
+              >
+                {tCommon("cancel")}
+              </Button>
+              <Button
+                variant="primary"
+                className="flex-1 !bg-red-500 hover:!bg-red-600"
+                onClick={handleConfirmDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? tCommon("loading") : tCommon("delete")}
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
