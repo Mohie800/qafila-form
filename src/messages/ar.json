@@ -101,7 +101,8 @@
         "privacyPolicy": "أوافق على سياسة الخصوصية والسرية",
         "termsOfUse": "أوافق على سياسة شروط الاستخدام",
         "commissionShippingPolicy": "أوافق على سياسة العمولة والشحن",
-        "whistleblowingPolicy": "أوافق على سياسة الإبلاغ عن المخالفات"
+        "whistleblowingPolicy": "أوافق على سياسة الإبلاغ عن المخالفات",
+        "readPolicy": "اقرأ السياسة"
     },
     "validation": {
         "required": "هذا الحقل مطلوب",

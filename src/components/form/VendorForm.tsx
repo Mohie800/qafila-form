@@ -5,7 +5,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowLeft, ArrowRight, Check, Play, Download } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Play,
+  Download,
+  FileText,
+  ExternalLink,
+} from "lucide-react";
 import { vendorFormSchema, VendorFormData } from "@/lib/validations";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -414,79 +422,185 @@ export function VendorForm({ onBack }: VendorFormProps) {
 
           {/* Policy Agreements */}
           <Card>
-            <CardContent className="space-y-4 p-6">
-              <h2 className="text-lg font-semibold text-foreground mb-2">
-                {t("policyAgreements")}
-              </h2>
-              <p className="text-text-gray text-sm mb-4">
-                {t("policyAgreementsDescription")}
-              </p>
+            <CardContent className="space-y-5 p-6">
+              <div>
+                <h2 className="text-lg font-semibold text-foreground mb-2">
+                  {t("policyAgreements")}
+                </h2>
+                <p className="text-text-gray text-sm">
+                  {t("policyAgreementsDescription")}
+                </p>
+              </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("productImagePolicy")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("productImagePolicy")}
-                </span>
-              </label>
+              <div className="space-y-3">
+                {/* Product Image Policy */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="productImagePolicy"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("productImagePolicy")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="productImagePolicy"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("productImagePolicy")}
+                    </label>
+                    <a
+                      href="/سياسة صور المنتجات - Product Image Policy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("returnRefundPolicy")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("returnRefundPolicy")}
-                </span>
-              </label>
+                {/* Return Refund Policy */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="returnRefundPolicy"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("returnRefundPolicy")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="returnRefundPolicy"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("returnRefundPolicy")}
+                    </label>
+                    <a
+                      href="/سياسة الاستبدال والاسترجاع والالغاء - Return, Refund and Cancellation Policy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("privacyPolicy")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("privacyPolicy")}
-                </span>
-              </label>
+                {/* Privacy Policy */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="privacyPolicy"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("privacyPolicy")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="privacyPolicy"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("privacyPolicy")}
+                    </label>
+                    <a
+                      href="/سياسة الخصوصية وسرية المعلومات - Privacy Policy & Confidentiality of Information.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("termsOfUse")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("termsOfUse")}
-                </span>
-              </label>
+                {/* Terms of Use */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="termsOfUse"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("termsOfUse")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="termsOfUse"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("termsOfUse")}
+                    </label>
+                    <a
+                      href="/شروط الاستخدام - Term of Use.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("commissionShippingPolicy")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("commissionShippingPolicy")}
-                </span>
-              </label>
+                {/* Commission Shipping Policy */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="commissionShippingPolicy"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("commissionShippingPolicy")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="commissionShippingPolicy"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("commissionShippingPolicy")}
+                    </label>
+                    <a
+                      href="/سياسة العمولة والشحن (المنصة مقابل المورد) - Commission Matrix (Platform vs. Vendor Split).pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary"
-                  {...register("whistleblowingPolicy")}
-                />
-                <span className="text-foreground text-sm">
-                  {tPolicies("whistleblowingPolicy")}
-                </span>
-              </label>
+                {/* Whistleblowing Policy */}
+                <div className="flex items-start gap-3 p-4 border border-border rounded-lg bg-background hover:bg-background-secondary transition-colors">
+                  <input
+                    type="checkbox"
+                    id="whistleblowingPolicy"
+                    className="mt-1 w-5 h-5 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                    {...register("whistleblowingPolicy")}
+                  />
+                  <div className="flex-1">
+                    <label
+                      htmlFor="whistleblowingPolicy"
+                      className="text-foreground text-sm font-medium cursor-pointer block mb-2"
+                    >
+                      {tPolicies("whistleblowingPolicy")}
+                    </label>
+                    <a
+                      href="/سياسة للإبلاغ عن المخالفات - Whistleblowing Policy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>{tPolicies("readPolicy")}</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

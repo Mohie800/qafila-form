@@ -101,7 +101,8 @@
         "privacyPolicy": "I agree to the Privacy and Confidentiality Policy",
         "termsOfUse": "I agree to the Terms of Use Policy",
         "commissionShippingPolicy": "I agree to the Commission and Shipping Policy",
-        "whistleblowingPolicy": "I agree to the Whistleblowing Policy"
+        "whistleblowingPolicy": "I agree to the Whistleblowing Policy",
+        "readPolicy": "Read Policy"
     },
     "validation": {
         "required": "This field is required",
