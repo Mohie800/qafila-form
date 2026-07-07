@@ -151,7 +151,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
 
   if (submitStatus === "success") {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+      <div className="dark min-h-screen flex items-center justify-center p-4 bg-background">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -179,7 +179,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
+    <div className="dark min-h-screen bg-background py-8 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -452,7 +452,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/سياسة صور المنتجات - Product Image Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
@@ -480,7 +480,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/سياسة الاستبدال والاسترجاع والالغاء - Return, Refund and Cancellation Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
@@ -508,7 +508,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/سياسة الخصوصية وسرية المعلومات - Privacy Policy & Confidentiality of Information.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
@@ -536,7 +536,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/شروط الاستخدام - Term of Use.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
@@ -564,7 +564,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/سياسة العمولة والشحن (المنصة مقابل المورد) - Commission Matrix (Platform vs. Vendor Split).pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
@@ -592,7 +592,7 @@ export function VendorForm({ onBack }: VendorFormProps) {
                       href="/سياسة للإبلاغ عن المخالفات - Whistleblowing Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-sm transition-colors"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 text-sm transition-colors"
                     >
                       <FileText className="w-4 h-4" />
                       <span>{tPolicies("readPolicy")}</span>
