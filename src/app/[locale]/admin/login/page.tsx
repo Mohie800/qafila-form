@@ -103,7 +103,7 @@ export default function AdminLoginPage() {
             alt="Qafila"
             width={140}
             height={56}
-            className="mx-auto mb-6 not-dark:invert dark:invert-0"
+            className="mx-auto mb-6"
           />
           <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
           <p className="text-text-gray mt-2">{t("subtitle")}</p>

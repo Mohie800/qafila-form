@@ -92,7 +92,7 @@ export default function AdminSetupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="dark min-h-screen bg-background flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default function AdminSetupPage() {
             alt="Qafila"
             width={140}
             height={56}
-            className="mx-auto mb-6 dark:invert"
+            className="mx-auto mb-6"
           />
           <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
           <p className="text-text-gray mt-2">{t("subtitle")}</p>
