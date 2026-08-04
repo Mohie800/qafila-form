@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono, Cairo } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { Providers } from "@/components/providers/Providers";
 import { locales, localeDirection, Locale } from "@/i18n";
 import "../globals.css";
@@ -16,9 +16,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const cairo = Cairo({
-  variable: "--font-cairo",
+const plexArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-plex-sans",
   subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 interface LocaleLayoutProps {
@@ -47,10 +49,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${plexArabic.variable} antialiased`}
         style={{
           fontFamily: isArabic
-            ? "var(--font-cairo), var(--font-geist-sans), system-ui, sans-serif"
+            ? "var(--font-plex-sans), var(--font-geist-sans), system-ui, sans-serif"
             : "var(--font-geist-sans), system-ui, sans-serif",
         }}
       >

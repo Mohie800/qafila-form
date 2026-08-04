@@ -96,7 +96,7 @@
   /* Fonts */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --font-cairo: var(--font-cairo), system-ui, sans-serif;
+  --font-plex: var(--font-plex-sans), system-ui, sans-serif;
 }
 
 /* Base Styles */

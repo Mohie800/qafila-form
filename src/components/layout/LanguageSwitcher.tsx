@@ -38,7 +38,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       aria-label="Switch language"
     >
       <span
-        className={`text-sm font-medium ${locale === "en" ? "font-cairo" : ""}`}
+        className={`text-sm font-medium ${locale === "en" ? "font-plex" : ""}`}
       >
         {locale === "en" ? "العربية" : "EN"}
       </span>
